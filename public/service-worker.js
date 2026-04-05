@@ -1,4 +1,4 @@
-const CACHE_NAME = 'stoic-planner-cache-v1';
+const CACHE_NAME = 'stoic-planner-cache-v2';
 const urlsToCache = ['/', '/index.html', '/favicon.jpeg', '/manifest.json'];
 
 self.addEventListener('install', (event) => {
