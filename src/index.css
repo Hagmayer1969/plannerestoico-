@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,200;0,6..72,400;0,6..72,700;1,6..72,200;1,6..72,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Newsreader", ui-serif, Georgia, serif;
+
+  --color-background: #131313;
+  --color-on-background: #e5e2e1;
+  --color-primary: #e9c176;
+  --color-primary-container: #c5a059;
+  --color-on-primary: #412d00;
+  --color-secondary: #cdc5bc;
+  --color-on-secondary: #343029;
+  --color-surface: #131313;
+  --color-surface-container-low: #1c1b1b;
+  --color-surface-container-high: #2a2a2a;
+  --color-surface-container-highest: #353535;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-outline: #9a8f80;
+  --color-outline-variant: #4e4639;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-on-background font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .stone-texture {
+    background-image: linear-gradient(rgba(19, 19, 19, 0.95), rgba(19, 19, 19, 0.95)), 
+      url('https://lh3.googleusercontent.com/aida-public/AB6AXuACR4HCVR7kSR4tj9o1jvlAAUqi52ivFde0OFZtibQKmb1yT1YUPXG4dLM2ncyPUYfl-KHN4IGDYXoJD4u2ngFImm3cBmjMUtwvYGq4aulAMnjQK5qhj-eb9w51tz2ZD5uNVMcMT6N9nE49SQLq7Bw6qzDYK85MWqov00Te-ayPGmmsunHS9RmoJXqG6iTCfd4MrpEPGEY1UIAjyW2FX41lV991-IIA2e2br83sJpUsJ12ucXEMwO5lIunnL97TKzNNPXH_wH9g2Js-');
+    background-size: cover;
+  }
+
+  .grain-overlay {
+    @apply fixed inset-0 pointer-events-none z-50 mix-blend-soft-light opacity-[0.03];
+    background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+  }
+
+  .glass-panel {
+    @apply bg-surface-container-low/70 backdrop-blur-xl border border-white/5;
+  }
+}
