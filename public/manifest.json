@@ -1,6 +1,6 @@
 {
-  "name": "O Arquivo - Diário Estoico",
-  "short_name": "O Arquivo",
+  "name": "Planner Estoico",
+  "short_name": "Planner Estoico",
   "description": "Planner diário estoico para gratidão, foco e reflexão.",
   "start_url": ".",
   "display": "standalone",

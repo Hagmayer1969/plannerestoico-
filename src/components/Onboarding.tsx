@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight, Play, BookOpen, History, Hourglass, Settings } from 'lucide-react';
+import { ArrowRight, BookOpen, History, Hourglass, Settings } from 'lucide-react';
 import { getMonthlyTheme } from '../lib/stoicThemes';
 
 interface OnboardingProps {
@@ -128,24 +128,19 @@ export function IntroScreen({ onStart }: { onStart: () => void }) {
           className="relative group cursor-pointer mb-12"
         >
           <div className="aspect-[9/16] w-full rounded-lg overflow-hidden bg-surface-container-low shadow-2xl relative">
-            <video
-              src="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-              poster="https://lh3.googleusercontent.com/aida-public/AB6AXuBeh4K0ZKNQ53F2u-1yOUHZNjR3Lt_faFeAt6fIk4-sdppOzjNo-uSBmMF03VO2oHDv5O_7CBdeOUH3oaQukxPVtW-umhfz6hPcen3SboZVQam3IWCPZEvhqPv-CTK_sciU1oW8-T27oMeuzWHumCjeONnGBsppB95jtEMjWqzIY9fSvFYerHs7XQHtWhTcDJZ30ZEN8Kah090y38xRGHNdsqdoqYclLLwuC9KXJeXpwApv_DT3sQCQ_FcsuYYbDus7cz4AT0v7Nruc"
-              controls
-              playsInline
-              className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 ease-out"
+            <iframe
+              src="https://www.youtube.com/embed/WKv7o9WitUk?start=111&end=278&rel=0&modestbranding=1"
+              title="A Senda Estoica"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
             />
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-16 h-16 rounded-full glass-panel flex items-center justify-center border border-primary/20 transition-transform duration-300">
-                <Play className="text-primary w-8 h-8 fill-primary ml-1" />
-              </div>
-            </div>
             <div className="absolute bottom-6 left-6 right-6">
               <div className="glass-panel p-4 rounded">
                 <span className="font-serif text-lg italic text-on-background">A Senda Estoica</span>
                 <div className="flex items-center gap-2 mt-1">
                   <div className="w-1 h-1 rounded-full bg-primary/60" />
-                  <span className="font-sans text-[10px] uppercase tracking-widest text-secondary/50">4:12 TEMPO DE VÍDEO</span>
+                  <span className="font-sans text-[10px] uppercase tracking-widest text-secondary/50">2:47 TEMPO DE VÍDEO</span>
                 </div>
               </div>
             </div>
