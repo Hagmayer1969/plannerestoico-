@@ -1,11 +1,16 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Play, BookOpen, History, Hourglass, Settings } from 'lucide-react';
+import { getMonthlyTheme } from '../lib/stoicThemes';
 
 interface OnboardingProps {
   onComplete: () => void;
 }
 
 export default function Onboarding({ onComplete }: OnboardingProps) {
+  const locale = typeof navigator !== 'undefined' ? navigator.language : 'pt-BR';
+  const theme = getMonthlyTheme(new Date(), locale);
+
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Background Layer */}
@@ -36,14 +41,14 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
           className="w-full text-center"
         >
           <h1 className="font-serif text-6xl md:text-7xl italic text-on-background tracking-tighter mb-8 leading-tight">
-            Amor Fati
+            {theme.title}
           </h1>
           <div className="space-y-6">
             <p className="font-serif text-xl md:text-2xl text-on-background/80 font-light italic leading-relaxed">
-              "Não busque que as coisas aconteçam como você deseja; em vez disso, deseje que o que acontece aconteça da maneira que acontece: então você será feliz."
+              "{theme.quote}"
             </p>
             <p className="font-sans text-sm md:text-base text-secondary/80 max-w-xs mx-auto leading-relaxed tracking-wide">
-              Ame o seu destino, que é, de fato, a sua própria vida. Acolha cada momento — o triunfo e a tragédia — como combustível necessário para o crescimento da sua alma.
+              {theme.description}
             </p>
           </div>
         </motion.article>
@@ -123,14 +128,15 @@ export function IntroScreen({ onStart }: { onStart: () => void }) {
           className="relative group cursor-pointer mb-12"
         >
           <div className="aspect-[9/16] w-full rounded-lg overflow-hidden bg-surface-container-low shadow-2xl relative">
-            <img 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeh4K0ZKNQ53F2u-1yOUHZNjR3Lt_faFeAt6fIk4-sdppOzjNo-uSBmMF03VO2oHDv5O_7CBdeOUH3oaQukxPVtW-umhfz6hPcen3SboZVQam3IWCPZEvhqPv-CTK_sciU1oW8-T27oMeuzWHumCjeONnGBsppB95jtEMjWqzIY9fSvFYerHs7XQHtWhTcDJZ30ZEN8Kah090y38xRGHNdsqdoqYclLLwuC9KXJeXpwApv_DT3sQCQ_FcsuYYbDus7cz4AT0v7Nruc" 
-              alt="Vídeo de Introdução" 
-              className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700 ease-out"
-              referrerPolicy="no-referrer"
+            <video
+              src="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+              poster="https://lh3.googleusercontent.com/aida-public/AB6AXuBeh4K0ZKNQ53F2u-1yOUHZNjR3Lt_faFeAt6fIk4-sdppOzjNo-uSBmMF03VO2oHDv5O_7CBdeOUH3oaQukxPVtW-umhfz6hPcen3SboZVQam3IWCPZEvhqPv-CTK_sciU1oW8-T27oMeuzWHumCjeONnGBsppB95jtEMjWqzIY9fSvFYerHs7XQHtWhTcDJZ30ZEN8Kah090y38xRGHNdsqdoqYclLLwuC9KXJeXpwApv_DT3sQCQ_FcsuYYbDus7cz4AT0v7Nruc"
+              controls
+              playsInline
+              className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 ease-out"
             />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-16 h-16 rounded-full glass-panel flex items-center justify-center border border-primary/20 group-hover:scale-110 transition-transform duration-300">
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="w-16 h-16 rounded-full glass-panel flex items-center justify-center border border-primary/20 transition-transform duration-300">
                 <Play className="text-primary w-8 h-8 fill-primary ml-1" />
               </div>
             </div>

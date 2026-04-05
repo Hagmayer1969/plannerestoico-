@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <style>
+      .bg { fill: #0F0E0D; }
+      .circle { fill: #E9C176; opacity: 0.8; }
+      .letter { fill: #0F0E0D; font-family: Georgia, serif; font-weight: bold; font-size: 64px; }
+    </style>
+  </defs>
+  <rect class="bg" width="120" height="120" rx="24" />
+  <circle class="circle" cx="60" cy="60" r="36" />
+  <text class="letter" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">O</text>
+</svg>
