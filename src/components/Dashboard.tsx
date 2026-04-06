@@ -54,11 +54,13 @@ export default function Dashboard() {
   const [selectedPage, setSelectedPage] = useState<'ler' | 'escrever' | 'foco' | 'ajustes'>('escrever');
   const currentDateLabel = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date());
 
-  const RITUAL_STORAGE_KEY = 'stoic-planner-ritual';
+  const today = new Date().toISOString().slice(0, 10); // "2026-04-06"
+  const RITUAL_STORAGE_KEY = `stoic-planner-ritual-${today}`;
   const COMMITMENTS_STORAGE_KEY = 'stoic-planner-commitments';
   const REMINDERS_STORAGE_KEY = 'stoic-planner-reminders-active';
 
   useEffect(() => {
+    // Ritual 3-1-3: chave inclui a data → zera automaticamente a cada dia
     const storedRitual = loadJson<RitualState | null>(RITUAL_STORAGE_KEY, null);
     if (storedRitual) {
       setGratitudes(storedRitual.gratitudes);
@@ -66,9 +68,13 @@ export default function Dashboard() {
       setImprovements(storedRitual.improvements);
     }
 
-    const storedCommitments = loadJson<Commitment[]>(COMMITMENTS_STORAGE_KEY, []);
-    if (storedCommitments.length > 0) {
-      setCommitments(storedCommitments);
+    // Compromissos: mantém títulos/horários, mas reseta checkmarks no novo dia
+    const stored = loadJson<{ date: string; items: Commitment[] } | null>(COMMITMENTS_STORAGE_KEY, null);
+    if (stored) {
+      const items = stored.date === today
+        ? stored.items
+        : stored.items.map((c) => ({ ...c, completed: false }));
+      setCommitments(items);
     }
 
     const storedReminders = loadJson<boolean | null>(REMINDERS_STORAGE_KEY, null);
@@ -85,8 +91,8 @@ export default function Dashboard() {
   }, [gratitudes, dailyGoal, improvements]);
 
   useEffect(() => {
-    saveJson(COMMITMENTS_STORAGE_KEY, commitments);
-  }, [commitments]);
+    saveJson(COMMITMENTS_STORAGE_KEY, { date: today, items: commitments });
+  }, [commitments, today]);
 
   useEffect(() => {
     saveJson(REMINDERS_STORAGE_KEY, remindersActive);
