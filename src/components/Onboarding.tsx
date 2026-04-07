@@ -12,7 +12,7 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
   const theme = getMonthlyTheme(new Date(), locale);
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative min-h-screen">
       {/* Background Layer */}
       <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background z-10" />
@@ -21,6 +21,7 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
           alt="Marco Aurélio"
           className="w-full h-full object-cover grayscale opacity-40 mix-blend-luminosity"
           referrerPolicy="no-referrer"
+          loading="lazy"
         />
       </div>
 
@@ -84,9 +85,9 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
 
 export function IntroScreen({ onStart }: { onStart: () => void }) {
   return (
-    <div className="relative min-h-screen flex flex-col items-center stone-texture">
+    <div className="relative min-h-screen stone-texture">
       {/* Header */}
-      <header className="bg-background fixed top-0 w-full z-50 h-16 flex justify-between items-center px-6">
+      <header className="bg-background fixed top-0 w-full z-50 h-16 flex justify-between items-center px-6 border-b border-outline-variant/10">
         <div className="flex items-center gap-3">
           <div className="text-primary">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -96,7 +97,7 @@ export function IntroScreen({ onStart }: { onStart: () => void }) {
         <span className="font-serif italic text-primary tracking-widest text-xs uppercase opacity-80">Diário Estoico</span>
       </header>
 
-      <main className="flex-grow w-full max-w-lg px-6 pt-24 pb-32 flex flex-col relative z-10">
+      <main className="w-full px-6 pt-20 pb-32 flex flex-col relative z-10 max-w-lg mx-auto">
         {/* Silhouette Background */}
         <div className="absolute top-20 right-0 opacity-10 pointer-events-none transform translate-x-1/4 scale-150">
           <img 
@@ -104,6 +105,7 @@ export function IntroScreen({ onStart }: { onStart: () => void }) {
             alt="" 
             className="w-full grayscale"
             referrerPolicy="no-referrer"
+            loading="lazy"
           />
         </div>
 
@@ -128,13 +130,16 @@ export function IntroScreen({ onStart }: { onStart: () => void }) {
           className="relative group cursor-pointer mb-12"
         >
           <div className="aspect-[9/16] w-full rounded-lg overflow-hidden bg-surface-container-low shadow-2xl relative">
-            <iframe
-              src="https://www.youtube.com/embed/WKv7o9WitUk?start=111&end=278&rel=0&modestbranding=1"
-              title="A Senda Estoica"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full"
-            />
+            <div className="w-full h-full flex items-center justify-center bg-surface-container-lowest">
+              <iframe
+                src="https://www.youtube.com/embed/WKv7o9WitUk?start=111&end=278&rel=0&modestbranding=1"
+                title="A Senda Estoica"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+                loading="lazy"
+              />
+            </div>
             <div className="absolute bottom-6 left-6 right-6">
               <div className="glass-panel p-4 rounded">
                 <span className="font-serif text-lg italic text-on-background">A Senda Estoica</span>
